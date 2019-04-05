@@ -1,7 +1,10 @@
 package org.neidhardt.rxlocation.services
 
-import android.support.test.InstrumentationRegistry
-import android.support.test.rule.GrantPermissionRule
+import android.content.Context
+import androidx.test.filters.SmallTest
+import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.rule.GrantPermissionRule
+import androidx.test.runner.AndroidJUnit4
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import org.junit.Assert.assertEquals
@@ -9,6 +12,7 @@ import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.junit.runner.RunWith
 
 /**
  * Created by neid_ei (eric.neidhardt@dlr.de)
@@ -23,11 +27,12 @@ class GoogleLocationServicePermissionTest {
 		android.Manifest.permission.ACCESS_COARSE_LOCATION
 	)
 
+	private lateinit var context: Context
 	private lateinit var unit: GoogleLocationService
 
 	@Before
 	fun setUp() {
-		val context = InstrumentationRegistry.getTargetContext()
+		this.context = InstrumentationRegistry.getInstrumentation().context
 		this.unit = GoogleLocationService(context)
 	}
 
@@ -35,7 +40,7 @@ class GoogleLocationServicePermissionTest {
 	fun precondition_googlePlayServices() {
 		// action
 		val googleApiAvailability = GoogleApiAvailability.getInstance()
-		val resultCode = googleApiAvailability.isGooglePlayServicesAvailable(InstrumentationRegistry.getTargetContext())
+		val resultCode = googleApiAvailability.isGooglePlayServicesAvailable(this.context)
 		// verify
 		assertEquals(ConnectionResult.SUCCESS, resultCode)
 	}

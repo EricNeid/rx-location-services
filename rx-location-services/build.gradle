@@ -1,4 +1,4 @@
-def appVersionName = '1.0.0'
+def appVersionName = '0.0.2'
 def appVersionCode = 1
 
 def appPackageName = 'rx-location-services'
@@ -25,7 +25,7 @@ ext {
 	libraryDescription = 'A simple wrapper around some of Androids Location APIs.'
 
 	siteUrl = 'https://github.com/EricNeid/rx-location-services'
-	gitUrl = 'https://github.com/EricNeid/rx-location-servicess.git'
+	gitUrl = 'https://github.com/EricNeid/rx-location-services.git'
 
 	libraryVersion = appVersionName
 
@@ -33,9 +33,9 @@ ext {
 	developerName = 'Eric Neidhardt'
 	developerEmail = 'eric.neidhardt@gmail.com'
 
-	licenseName = 'MIT license'
+	licenseName = 'MIT'
 	licenseUrl = 'https://opensource.org/licenses/MIT'
-	allLicenses = ["MIT license"]
+	allLicenses = ["MIT"]
 }
 
 android {
@@ -46,6 +46,7 @@ android {
 		targetSdkVersion targetSdk
 		versionCode appVersionCode
 		versionName appVersionName
+        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 	}
 
 	buildTypes {
@@ -71,10 +72,14 @@ android {
 	}
 }
 
-def androidSupportTestVersion = '1.0.2'
+def androidSupportLibVersion = '27.1.1'
+def androidxTestVersion = '1.1.0'
 
 dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // android support
+    implementation "com.android.support:support-annotations:$androidSupportLibVersion"
 
 	// google play services
 	implementation 'com.google.android.gms:play-services-location:16.0.0'
@@ -88,9 +93,11 @@ dependencies {
 	testImplementation 'junit:junit:4.12'
 	testImplementation 'android.arch.core:core-testing:1.1.1'
 	testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0'
-	androidTestImplementation "com.android.support.test:runner:$androidSupportTestVersion"
-	androidTestImplementation "com.android.support.test:rules:$androidSupportTestVersion"
-	androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+
+    androidTestImplementation "androidx.test:runner:$androidxTestVersion"
+    androidTestImplementation "androidx.test:rules:$androidxTestVersion"
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 }
 
 apply plugin: 'com.github.dcendents.android-maven'
