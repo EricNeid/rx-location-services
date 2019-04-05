@@ -28,7 +28,7 @@ class GoogleLocationService(private val context: Context) : LocationRepository {
 	 * getLastKnowLocation returns the first new location available.
 	 * It does not check if google play services are present on the device.
 	 * It does check if booth permission Manifest.permission.ACCESS_FINE_LOCATION and Manifest.permission.ACCESS_COARSE_LOCATION
-	 * are granted. If permission is missing, it emits error of TODO
+	 * are granted. If permission is missing, it emits error of either {@link MissingPermissionFineLocation} or {@link MissingPermissionCoarseLocation}.
 	 *
 	 * @return Single<Location>
 	 */
@@ -36,9 +36,8 @@ class GoogleLocationService(private val context: Context) : LocationRepository {
 
 		return Single.create { emitter ->
 
-			if (!this.context.hasPermissionFineLocation && !this.context.hasPermissionCoarseLocation) {
-				// if permission is missing, emit error
-				emitter.onError(Throwable("Fine location permission is missing, make sure to ask the user for it"))
+			if (!isRequiredPermissionGranted(context)) {
+				emitter.onError(getErrorForMissingPermission(context))
 			} else {
 				// request last know location from client with async task
 				val asyncLocationTask = this.client.lastLocation
@@ -61,7 +60,7 @@ class GoogleLocationService(private val context: Context) : LocationRepository {
 	 * getLocationUpdates returns Observable for continuous location updates.
 	 * It does not check if google play services are present on the device.
 	 * It does check if booth permission Manifest.permission.ACCESS_FINE_LOCATION and Manifest.permission.ACCESS_COARSE_LOCATION
-	 * are granted. If permission is missing, it emits error of TODO
+	 * are granted. If permission is missing, it emits error of either {@link MissingPermissionFineLocation} or {@link MissingPermissionCoarseLocation}.
 	 * @return Flowable<Location>
 	 */
 	override fun getLocationUpdates(): Flowable<Location> {
@@ -84,15 +83,26 @@ class GoogleLocationService(private val context: Context) : LocationRepository {
 			}
 
 			// star receiving updates
-			if (!this.context.hasPermissionFineLocation && !this.context.hasPermissionCoarseLocation) {
-				// if permission is missing, emit error
-				emitter.onError(Throwable("Fine location permission is missing, make sure to ask the user for it"))
+			if (!isRequiredPermissionGranted(context)) {
+				emitter.onError(getErrorForMissingPermission(context))
 			} else {
 				// request location updates
 				this.client.requestLocationUpdates(LocationRequest(), locationUpdateCallback, null)
 			}
 
 		}, BackpressureStrategy.LATEST)
+	}
+}
+
+private fun isRequiredPermissionGranted(context: Context) {
+	return context.hasPermissionFineLocation || context.hasPermissionCoarseLocation
+}
+
+private fun getErrorForMissingPermission(context: Context): Throwable {
+	return if (!this.context.hasPermissionFineLocation) {
+		MissingPermissionFineLocation("Fine location permission is missing, make sure to ask the user for it")
+	} else if (!this.context.hasPermissionCoarseLocation) {
+		MissingPermissionCoarseLocation("Coarse location permission is missing, make sure to ask the user for it")
 	}
 }
 
