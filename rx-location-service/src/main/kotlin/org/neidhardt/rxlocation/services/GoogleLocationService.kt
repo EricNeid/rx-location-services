@@ -1,4 +1,4 @@
-package org.neidhardt.rxlocationservices
+package org.neidhardt.rxlocation.services
 
 import android.annotation.SuppressLint
 import android.content.Context

@@ -1,4 +1,4 @@
-package org.neidhardt.rx-location-services
+package org.neidhardt.rxlocation.services
 
 import android.support.test.InstrumentationRegistry
 import android.support.test.rule.GrantPermissionRule
