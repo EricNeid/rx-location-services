@@ -1,3 +1,11 @@
+def appVersionName = '1.0.0'
+def appVersionCode = 1
+
+def appPackageName = 'rx-location-services'
+def compileSdk = ext.compileSdk
+def minSdk = ext.minSdk
+def targetSdk = ext.targetSdk
+
 apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 
@@ -6,21 +14,20 @@ tasks.withType(Javadoc) {
 	enabled = false
 }
 
-def packageName = 'rx-location-services'
 ext {
 	bintrayRepo = 'maven'
-	bintrayName = packageName
+	bintrayName = appPackageName
 
 	publishedGroupId = 'org.neidhardt'
-	libraryName = packageName
-	artifact = packageName
+	libraryName = appPackageName
+	artifact = appPackageName
 
 	libraryDescription = 'A simple wrapper around some of Androids Location APIs.'
 
 	siteUrl = 'https://github.com/EricNeid/rx-location-services'
 	gitUrl = 'https://github.com/EricNeid/rx-location-servicess.git'
 
-	libraryVersion = '1.2.0'
+	libraryVersion = appVersionName
 
 	developerId = 'combatmage'
 	developerName = 'Eric Neidhardt'
@@ -32,23 +39,35 @@ ext {
 }
 
 android {
-	compileSdkVersion rootProject.ext.compileSDK
-	buildToolsVersion rootProject.ext.buildTools
+	compileSdkVersion compileSdk
 
 	defaultConfig {
-		minSdkVersion project.projectMinSDK
-		targetSdkVersion project.projectTargetSDK
+		minSdkVersion minSdk
+		targetSdkVersion targetSdk
+		versionCode appVersionCode
+		versionName appVersionName
 	}
+
 	buildTypes {
 		release {
 			minifyEnabled false
 		}
 	}
+
 	sourceSets {
 		main.java.srcDirs += 'src/main/kotlin'
 		test.java.srcDirs += 'src/test/kotlin'
 		debug.java.srcDirs += 'src/debug/kotlin'
 		release.java.srcDirs += 'src/release/kotlin'
+	}
+
+	compileOptions {
+		sourceCompatibility = '1.8'
+		targetCompatibility = '1.8'
+	}
+
+	testOptions {
+		unitTests.returnDefaultValues = true
 	}
 }
 
@@ -75,8 +94,6 @@ dependencies {
 }
 
 apply plugin: 'com.github.dcendents.android-maven'
-
-group = publishedGroupId // Maven Group ID for the artifact
 
 // Bintray section
 // make sure that you have the following in your local.properties

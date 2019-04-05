@@ -1,4 +1,4 @@
-package org.neidhardt.rxlocation
+package org.neidhardt.rxlocation.exceptions
 
 /**
  * MissingPermissionFineLocation indicates that permission Manifest.permission.ACCESS_FINE_LOCATION

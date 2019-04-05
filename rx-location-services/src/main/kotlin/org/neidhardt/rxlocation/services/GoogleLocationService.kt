@@ -1,19 +1,22 @@
 package org.neidhardt.rxlocation.services
 
+import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
+import android.content.pm.PackageManager
 import android.location.Location
+import android.support.v4.content.ContextCompat
 import com.google.android.gms.location.*
-import de.dlr.ts.apptemplate.permissions.hasPermissionFineLocation
-import de.dlr.ts.apptemplate.repositories.LocationRepository
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Single
+import org.neidhardt.rxlocation.exceptions.MissingPermissionCoarseLocation
+import org.neidhardt.rxlocation.exceptions.MissingPermissionFineLocation
 
 /**
  * GoogleLocationService
  */
-class GoogleLocationService(private val context: Context) : LocationRepository {
+class GoogleLocationService(private val context: Context) {
 
 	private val client = LocationServices.getFusedLocationProviderClient(context)
 
@@ -22,7 +25,7 @@ class GoogleLocationService(private val context: Context) : LocationRepository {
 	 * This location may be null, if no location was obtained before.
 	 * @return Location or null
 	 */
-	override var lastKnowLocation: Location? = null
+	var lastKnowLocation: Location? = null
 
 	/**
 	 * getLastKnowLocation returns the first new location available.
@@ -32,7 +35,8 @@ class GoogleLocationService(private val context: Context) : LocationRepository {
 	 *
 	 * @return Single<Location>
 	 */
-	override fun getLastKnowLocation(): Single<Location> {
+	@SuppressLint("MissingPermission")
+	fun getLastKnowLocation(): Single<Location> {
 
 		return Single.create { emitter ->
 
@@ -63,7 +67,8 @@ class GoogleLocationService(private val context: Context) : LocationRepository {
 	 * are granted. If permission is missing, it emits error of either {@link MissingPermissionFineLocation} or {@link MissingPermissionCoarseLocation}.
 	 * @return Flowable<Location>
 	 */
-	override fun getLocationUpdates(): Flowable<Location> {
+	@SuppressLint("MissingPermission")
+	fun getLocationUpdates(): Flowable<Location> {
 
 		return Flowable.create({ emitter ->
 
@@ -94,15 +99,17 @@ class GoogleLocationService(private val context: Context) : LocationRepository {
 	}
 }
 
-private fun isRequiredPermissionGranted(context: Context) {
+private fun isRequiredPermissionGranted(context: Context): Boolean {
 	return context.hasPermissionFineLocation || context.hasPermissionCoarseLocation
 }
 
 private fun getErrorForMissingPermission(context: Context): Throwable {
-	return if (!this.context.hasPermissionFineLocation) {
+	return if (!context.hasPermissionFineLocation) {
 		MissingPermissionFineLocation("Fine location permission is missing, make sure to ask the user for it")
-	} else if (!this.context.hasPermissionCoarseLocation) {
+	} else if (!context.hasPermissionCoarseLocation) {
 		MissingPermissionCoarseLocation("Coarse location permission is missing, make sure to ask the user for it")
+	} else {
+		Throwable("Required permission is missing")
 	}
 }
 
