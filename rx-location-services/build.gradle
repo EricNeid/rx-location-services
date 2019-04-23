@@ -1,7 +1,25 @@
-def appVersionName = '0.0.2'
+def appVersionName = '0.0.4'
 def appVersionCode = 1
-
+def publishedGroupId = 'org.neidhardt'
 def appPackageName = 'rx-location-services'
+
+def bintrayRepo = 'maven'
+
+def libraryDescription = 'A simple wrapper around some of Androids Location APIs.'
+
+def siteUrl = 'https://github.com/EricNeid/rx-location-services'
+def gitUrl = 'https://github.com/EricNeid/rx-location-services.git'
+
+def libraryVersion = appVersionName
+
+def developerId = 'combatmage'
+def developerName = 'Eric Neidhardt'
+def developerEmail = 'eric.neidhardt@gmail.com'
+
+def licenseName = 'MIT'
+def licenseUrl = 'https://opensource.org/licenses/MIT'
+def allLicenses = ["MIT"]
+
 def compileSdk = ext.compileSdk
 def minSdk = ext.minSdk
 def targetSdk = ext.targetSdk
@@ -14,30 +32,6 @@ tasks.withType(Javadoc) {
 	enabled = false
 }
 
-ext {
-	bintrayRepo = 'maven'
-	bintrayName = appPackageName
-
-	publishedGroupId = 'org.neidhardt'
-	libraryName = appPackageName
-	artifact = appPackageName
-
-	libraryDescription = 'A simple wrapper around some of Androids Location APIs.'
-
-	siteUrl = 'https://github.com/EricNeid/rx-location-services'
-	gitUrl = 'https://github.com/EricNeid/rx-location-services.git'
-
-	libraryVersion = appVersionName
-
-	developerId = 'combatmage'
-	developerName = 'Eric Neidhardt'
-	developerEmail = 'eric.neidhardt@gmail.com'
-
-	licenseName = 'MIT'
-	licenseUrl = 'https://opensource.org/licenses/MIT'
-	allLicenses = ["MIT"]
-}
-
 android {
 	compileSdkVersion compileSdk
 
@@ -46,7 +40,7 @@ android {
 		targetSdkVersion targetSdk
 		versionCode appVersionCode
 		versionName appVersionName
-        testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
+		testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
 	}
 
 	buildTypes {
@@ -109,6 +103,7 @@ apply plugin: 'com.github.dcendents.android-maven'
 apply plugin: 'com.jfrog.bintray'
 
 version = libraryVersion
+group = publishedGroupId
 
 if (project.hasProperty("android")) { // Android libraries
 	task sourcesJar(type: Jar) {
@@ -145,10 +140,10 @@ bintray {
 		project {
 			packaging 'aar'
 			groupId publishedGroupId
-			artifactId artifact
+			artifactId appPackageName
 
 			// Add your description here
-			name libraryName
+			name appPackageName
 			description libraryDescription
 			url siteUrl
 
@@ -181,7 +176,7 @@ bintray {
 	configurations = ['archives']
 	pkg {
 		repo = bintrayRepo
-		name = bintrayName
+		name = appPackageName
 		desc = libraryDescription
 		websiteUrl = siteUrl
 		vcsUrl = gitUrl
