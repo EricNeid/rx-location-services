@@ -1,10 +1,9 @@
 package org.neidhardt.rxlocation.services
 
 import android.content.Context
-import androidx.test.filters.SmallTest
+import androidx.test.filters.LargeTest
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.GrantPermissionRule
-import androidx.test.runner.AndroidJUnit4
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
 import org.junit.Assert.assertEquals
@@ -12,13 +11,13 @@ import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.junit.runner.RunWith
 
 /**
  * Created by neid_ei (eric.neidhardt@dlr.de)
  * on 01.04.2019.
  */
-class GoogleLocationServicePermissionTest {
+@LargeTest
+class GoogleLocationServiceTest {
 
 	@Rule
 	@JvmField
@@ -53,5 +52,6 @@ class GoogleLocationServicePermissionTest {
 		assertNotNull(result != null)
 		assertNotNull(result.latitude)
 		assertNotNull(result.longitude)
+		assertEquals(result, this.unit.lastKnowLocation)
 	}
 }
