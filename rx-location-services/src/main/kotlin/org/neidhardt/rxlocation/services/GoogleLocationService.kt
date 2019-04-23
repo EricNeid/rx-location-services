@@ -14,7 +14,10 @@ import org.neidhardt.rxlocation.exceptions.MissingPermissionCoarseLocation
 import org.neidhardt.rxlocation.exceptions.MissingPermissionFineLocation
 
 /**
- * GoogleLocationService
+ * GoogleLocationService is a wrapper for FusedLocationProviderClient to use rx.
+ *
+ * @param context android context required for FusedLocationProviderClient, should be Application context.
+ * @constructor creates a new instance that does nothing on start
  */
 class GoogleLocationService(private val context: Context) {
 
@@ -23,17 +26,17 @@ class GoogleLocationService(private val context: Context) {
 	/**
 	 * lastKnowLocation returns the last location which was obtained from this repository.
 	 * This location may be null, if no location was obtained before.
-	 * @return Location or null
+	 * @return [Location] or null
 	 */
 	var lastKnowLocation: Location? = null
 
 	/**
 	 * getLastKnowLocation returns the first new location available.
 	 * It does not check if google play services are present on the device.
-	 * It does check if booth permission Manifest.permission.ACCESS_FINE_LOCATION and Manifest.permission.ACCESS_COARSE_LOCATION
-	 * are granted. If permission is missing, it emits error of either {@link MissingPermissionFineLocation} or {@link MissingPermissionCoarseLocation}.
+	 * It does check if booth permission [Manifest.permission.ACCESS_FINE_LOCATION] and [Manifest.permission.ACCESS_COARSE_LOCATION]
+	 * are granted. If permission is missing, it emits error of either [MissingPermissionFineLocation] or [MissingPermissionCoarseLocation].
 	 *
-	 * @return Single<Location>
+	 * @return single location update
 	 */
 	@SuppressLint("MissingPermission")
 	fun getLastKnowLocation(): Single<Location> {
@@ -63,12 +66,14 @@ class GoogleLocationService(private val context: Context) {
 	/**
 	 * getLocationUpdates returns Observable for continuous location updates.
 	 * It does not check if google play services are present on the device.
-	 * It does check if booth permission Manifest.permission.ACCESS_FINE_LOCATION and Manifest.permission.ACCESS_COARSE_LOCATION
-	 * are granted. If permission is missing, it emits error of either {@link MissingPermissionFineLocation} or {@link MissingPermissionCoarseLocation}.
-	 * @return Flowable<Location>
+	 * It does check if booth permission [Manifest.permission.ACCESS_FINE_LOCATION] and [Manifest.permission.ACCESS_COARSE_LOCATION]
+	 * are granted. If permission is missing, it emits error of either [MissingPermissionFineLocation] or [MissingPermissionCoarseLocation].
+	 *
+	 * @param locationRequest to set update interval, precision, power usage, etc.
+	 * @return location updates
 	 */
 	@SuppressLint("MissingPermission")
-	fun getLocationUpdates(): Flowable<Location> {
+	fun getLocationUpdates(locationRequest: LocationRequest): Flowable<Location> {
 
 		return Flowable.create({ emitter ->
 
@@ -92,7 +97,7 @@ class GoogleLocationService(private val context: Context) {
 				emitter.onError(getErrorForMissingPermission(context))
 			} else {
 				// request location updates
-				this.client.requestLocationUpdates(LocationRequest(), locationUpdateCallback, null)
+				this.client.requestLocationUpdates(locationRequest, locationUpdateCallback, null)
 			}
 
 		}, BackpressureStrategy.LATEST)
