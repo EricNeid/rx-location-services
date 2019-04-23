@@ -6,11 +6,20 @@ is included.
 **Gradle**
 
 ```gradle
-implementation 'org.neidhardt:rx-location-service:1.0.0'
+implementation 'org.neidhardt:rx-location-services:0.0.5'
 ```
 
 **Usage**
 
 ```kotlin
-// TODO
+
+// do not forget to dispose subscription
+this.subscriptions.add(this.locationRepository.getLocationUpdates()
+	.observeOn(AndroidSchedulers.mainThread())
+	.subscribe({ location ->
+		myLocationConsumer?.onLocationChanged(location, this)
+	}, { error ->
+		// handle error
+	}))
+
 ```
