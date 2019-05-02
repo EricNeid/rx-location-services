@@ -54,4 +54,5 @@ class GoogleLocationServiceTest {
 		assertNotNull(result.longitude)
 		assertEquals(result, this.unit.lastKnowLocation)
 	}
+
 }
