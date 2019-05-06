@@ -1,5 +1,5 @@
-def appVersionName = '0.0.6'
-def appVersionCode = 1
+def appVersionName = '0.0.7'
+def appVersionCode = 2
 def publishedGroupId = 'org.neidhardt'
 def appPackageName = 'rx-location-services'
 

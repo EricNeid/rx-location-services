@@ -49,7 +49,7 @@ class GoogleLocationServiceTest {
 		// action
 		val result = this.unit.getLastKnowLocation().blockingGet()
 		// verify
-		assertNotNull(result != null)
+		assertNotNull(result)
 		assertNotNull(result.latitude)
 		assertNotNull(result.longitude)
 		assertEquals(result, this.unit.lastKnowLocation)
