@@ -1,5 +1,6 @@
 package org.neidhardt.rxlocation.utils
 
+import io.reactivex.Flowable
 import io.reactivex.Observable
 import org.junit.Test
 
@@ -14,7 +15,7 @@ class BearingUtilsKtTest {
 	@Test
 	fun batchBearingsMean() {
 		// arrange
-		val testBearings: Observable<Float> = Observable.just(0f, 1f, 2f, 4f, 6f, 8f)
+		val testBearings: Flowable<Float> = Flowable.just(0f, 1f, 2f, 4f, 6f, 8f)
 		// action
 		val resultFirst = testBearings.batchBearingsMean(3).blockingFirst()
 		val resultSecond = testBearings.batchBearingsMean(3).blockingLast()

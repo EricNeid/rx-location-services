@@ -110,7 +110,7 @@ class BearingSensorService(context: Context) {
 					SensorManager.SENSOR_DELAY_GAME
 			)
 
-		}, BackpressureStrategy.BUFFER)
+		}, BackpressureStrategy.LATEST)
 	}
 
 	private fun calculateAzimuthDegree(
