@@ -1,4 +1,6 @@
-package org.neidhardt.rxlocation.services
+@file:Suppress("unused")
+
+package org.neidhardt.rxlocation
 
 import com.google.android.gms.location.LocationRequest
 
