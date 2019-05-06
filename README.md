@@ -1,25 +1,39 @@
 # rx-location-services
 
-A simple wrapper around some of Androids Location APIs. Currently only GoogleFusedLocationProvider 
-is included.
+A simple wrapper around some of Androids Location APIs. Currently supported: 
+* GoogleLocationService - using GoogleFusedLocationProvider for Location updates
+* BearingSensorService - using accelerometer and magnetic sensor for bearing updates
 
 **Gradle**
 
 ```gradle
-implementation 'org.neidhardt:rx-location-services:0.0.5'
+implementation 'org.neidhardt:rx-location-services:0.0.7'
 ```
 
 **Usage**
 
 ```kotlin
+// create service instances in application 
+val locationService: GoogleLocationService by lazy { GoogleLocationService(this.applicationContext) }
 
+val bearingService: BearingSensorService by lazy { BearingSensorService(this.applicationContext) }
+```
+
+```kotlin
 // do not forget to dispose subscription
-this.subscriptions.add(this.locationRepository.getLocationUpdates()
+this.subscriptions.add(locationService.getLocationUpdates()
 	.observeOn(AndroidSchedulers.mainThread())
 	.subscribe({ location ->
-		myLocationConsumer?.onLocationChanged(location, this)
+		myLocationConsumer?.onLocationChanged(location)
 	}, { error ->
 		// handle error
 	}))
 
+this.subscriptions.add(bearingService.getBearingUpdates()
+	.observeOn(AndroidSchedulers.mainThread())
+	.subscribe({ bearing ->
+		myBearingConsumer?.onBearingChanged(bearing)
+	}, { error ->
+		// handle error
+	}))
 ```
