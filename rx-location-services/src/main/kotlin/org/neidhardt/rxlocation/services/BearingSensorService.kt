@@ -17,6 +17,19 @@ class BearingSensorService(context: Context) {
 
 	private val sensorManager = context.getSystemService(Context.SENSOR_SERVICE) as SensorManager
 
+	/**
+	 * lastKnownBearing returns the last bearing which was calculated by any call for bearing updates.
+	 */
+	var lastKnownBearing: Float? = null
+
+	/**
+	 * getBearingUpdates returns Observable for continuous bearing updates.
+	 * It uses the accelerometer and the magnetic field sensor.
+	 * If one of the required sensors is not available, [MissingSensor] is emitted.
+	 * A bearing of 0.0 means magnetic north.
+	 *
+	 * @return bearing updates
+	 */
 	fun getBearingUpdates(): Flowable<Float> {
 
 		return Flowable.create({ emitter ->
