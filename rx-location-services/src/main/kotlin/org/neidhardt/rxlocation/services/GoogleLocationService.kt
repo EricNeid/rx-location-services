@@ -64,7 +64,7 @@ class GoogleLocationService(private val context: Context) {
 	}
 
 	/**
-	 * getLocationUpdates returns Observable for continuous location updates.
+	 * getLocationUpdates returns Flowable for continuous location updates.
 	 * It does not check if google play services are present on the device.
 	 * It does check if booth permission [Manifest.permission.ACCESS_FINE_LOCATION] and [Manifest.permission.ACCESS_COARSE_LOCATION]
 	 * are granted. If permission is missing, it emits error of either [MissingPermissionFineLocation] or [MissingPermissionCoarseLocation].

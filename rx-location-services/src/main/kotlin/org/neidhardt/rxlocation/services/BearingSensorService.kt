@@ -23,7 +23,7 @@ class BearingSensorService(context: Context) {
 	var lastKnownBearing: Float? = null
 
 	/**
-	 * getBearingUpdates returns Observable for continuous bearing updates.
+	 * getBearingUpdates returns Flowable for continuous bearing updates.
 	 * It uses the accelerometer and the magnetic field sensor.
 	 * If one of the required sensors is not available, [MissingSensor] is emitted.
 	 * A bearing of 0.0 means magnetic north.
