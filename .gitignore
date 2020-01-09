@@ -6,4 +6,5 @@ gradle.properties
 *.iml
 *.project
 *.prefs
+.classpath
 simple-storage/.classpath
