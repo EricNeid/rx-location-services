@@ -72,8 +72,8 @@ def androidxTestVersion = '1.1.0'
 dependencies {
 	implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    // android support
-    implementation "com.android.support:support-annotations:$androidSupportLibVersion"
+	// android support
+	implementation "com.android.support:support-annotations:$androidSupportLibVersion"
 
 	// google play services
 	implementation 'com.google.android.gms:play-services-location:16.0.0'
@@ -89,9 +89,9 @@ dependencies {
 	testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0'
 
 
-    androidTestImplementation "androidx.test:runner:$androidxTestVersion"
-    androidTestImplementation "androidx.test:rules:$androidxTestVersion"
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+	androidTestImplementation "androidx.test:runner:$androidxTestVersion"
+	androidTestImplementation "androidx.test:rules:$androidxTestVersion"
+	androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 }
 
 apply plugin: 'com.github.dcendents.android-maven'

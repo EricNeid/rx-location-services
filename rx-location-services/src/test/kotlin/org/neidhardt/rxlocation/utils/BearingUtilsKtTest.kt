@@ -1,7 +1,6 @@
 package org.neidhardt.rxlocation.utils
 
 import io.reactivex.Flowable
-import io.reactivex.Observable
 import org.junit.Test
 
 import org.junit.Assert.*
