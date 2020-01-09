@@ -27,8 +27,8 @@ allprojects {
 		jcenter()
 	}
 	ext.minSdk = 21
-	ext.targetSdk = 27
-	ext.compileSdk = 27
+	ext.targetSdk = 29
+	ext.compileSdk = 29
 }
 
 task clean(type: Delete) {
