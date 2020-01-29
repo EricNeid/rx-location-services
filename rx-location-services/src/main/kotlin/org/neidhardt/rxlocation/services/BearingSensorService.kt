@@ -26,9 +26,9 @@ class BearingSensorService(context: Context) {
 	 * getBearingUpdates returns Flowable for continuous bearing updates.
 	 * It uses the accelerometer and the magnetic field sensor.
 	 * If one of the required sensors is not available, [MissingSensor] is emitted.
-	 * A bearing of 0.0 means magnetic north.
+	 * A bearing of 0.0 or 360.0 means magnetic north.
 	 *
-	 * @return bearing updates
+	 * @return bearing updates in degree
 	 */
 	fun getBearingUpdates(): Flowable<Float> {
 
