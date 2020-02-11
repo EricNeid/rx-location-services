@@ -1,4 +1,4 @@
-def appVersionName = '0.0.9'
+def appVersionName = '0.1.0'
 def appVersionCode = 2
 def publishedGroupId = 'org.neidhardt'
 def appPackageName = 'rx-location-services'
@@ -84,14 +84,12 @@ dependencies {
 	implementation 'io.reactivex.rxjava2:rxkotlin:2.1.0'
 
 	// testing
-	testImplementation 'junit:junit:4.12'
+	testImplementation 'junit:junit:4.13'
 	testImplementation 'android.arch.core:core-testing:1.1.1'
-	testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0'
-
+	testImplementation 'com.nhaarman.mockitokotlin2:mockito-kotlin:2.2.0'
 
 	androidTestImplementation "androidx.test:runner:$androidxTestVersion"
 	androidTestImplementation "androidx.test:rules:$androidxTestVersion"
-	androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
 }
 
 apply plugin: 'com.github.dcendents.android-maven'
