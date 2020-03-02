@@ -31,7 +31,10 @@ class GoogleLocationService(private val context: Context) {
 	var lastKnowLocation: Location? = null
 
 	/**
-	 * getLocation returns the first new location available.
+	 * getLastKnowLocationFromDevice returns the last location obtained by any google location service on this device.
+	 * It doest not retrieve a new location.
+	 * To get a new location, it is usually better to call: getLocationUpdates(...).subscribe.first(...).
+	 *
 	 * It does not check if google play services are present on the device.
 	 * It does check if booth permission [Manifest.permission.ACCESS_FINE_LOCATION] and [Manifest.permission.ACCESS_COARSE_LOCATION]
 	 * are granted. If permission is missing, it emits error of either [MissingPermissionFineLocation] or [MissingPermissionCoarseLocation].
@@ -39,7 +42,7 @@ class GoogleLocationService(private val context: Context) {
 	 * @return single location update
 	 */
 	@SuppressLint("MissingPermission")
-	fun getLocation(): Single<Location> {
+	fun getLastKnowLocationFromDevice(): Single<Location> {
 
 		return Single.create { emitter ->
 

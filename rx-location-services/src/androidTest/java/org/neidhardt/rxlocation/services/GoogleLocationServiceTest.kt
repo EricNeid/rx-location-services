@@ -46,9 +46,9 @@ class GoogleLocationServiceTest {
 	}
 
 	@Test
-	fun getLastKnowLocation() {
+	fun getLastKnowLocationFromDevice() {
 		// action
-		val result = this.unit.getLocation().blockingGet()
+		val result = this.unit.getLastKnowLocationFromDevice().blockingGet()
 		// verify
 		assertNotNull(result)
 		assertNotNull(result.latitude)
