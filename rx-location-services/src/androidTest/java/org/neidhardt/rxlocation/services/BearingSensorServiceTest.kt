@@ -8,10 +8,7 @@ import org.junit.Test
 
 import org.junit.Assert.*
 
-/**
- * Created by neid_ei (eric.neidhardt@dlr.de)
- * on 06.05.2019.
- */
+
 @LargeTest
 class BearingSensorServiceTest {
 
@@ -30,5 +27,6 @@ class BearingSensorServiceTest {
 		val result = this.unit.getBearingUpdates().blockingFirst()
 		// verify
 		assertNotNull(result)
+		assertEquals(result, unit.lastKnownBearing)
 	}
 }

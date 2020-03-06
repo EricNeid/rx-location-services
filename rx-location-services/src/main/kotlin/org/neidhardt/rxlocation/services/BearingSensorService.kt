@@ -9,9 +9,12 @@ import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import org.neidhardt.rxlocation.exceptions.MissingSensor
 
+
 /**
- * Created by neid_ei (eric.neidhardt@dlr.de)
- * on 06.05.2019.
+ * BearingSensorService is a wrapper getting the bearing from magnetic sensor and accelerometer sensor.
+ *
+ * @param context android context required to obtain sensor service
+ * @constructor creates a new instance that does nothing on start
  */
 class BearingSensorService(context: Context) {
 
@@ -67,7 +70,9 @@ class BearingSensorService(context: Context) {
 
 					// if both reading are available, calculate bearing
 					if (isAccelerometerReadingAvailable && isMagnetometerReadingAvailable) {
-						emitter.onNext(calculateAzimuthDegree(accelerometerReading, magnetometerReading))
+						val azimuth = calculateAzimuthDegree(accelerometerReading, magnetometerReading)
+						lastKnownBearing = azimuth
+						emitter.onNext(azimuth)
 					}
 				}
 			}
@@ -85,7 +90,9 @@ class BearingSensorService(context: Context) {
 
 					// if both reading are available, calculate bearing
 					if (isAccelerometerReadingAvailable && isMagnetometerReadingAvailable) {
-						emitter.onNext(calculateAzimuthDegree(accelerometerReading, magnetometerReading))
+						val azimuth = calculateAzimuthDegree(accelerometerReading, magnetometerReading)
+						lastKnownBearing = azimuth
+						emitter.onNext(azimuth)
 					}
 				}
 			}

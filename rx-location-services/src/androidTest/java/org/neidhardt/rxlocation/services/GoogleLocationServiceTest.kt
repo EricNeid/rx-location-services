@@ -12,10 +12,7 @@ import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 
-/**
- * Created by neid_ei (eric.neidhardt@dlr.de)
- * on 01.04.2019.
- */
+
 @LargeTest
 class GoogleLocationServiceTest {
 

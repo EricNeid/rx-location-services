@@ -1,13 +1,8 @@
-@file:Suppress("unused")
-
 package org.neidhardt.rxlocation
 
 import com.google.android.gms.location.LocationRequest
 
-/**
- * Created by neid_ei (eric.neidhardt@dlr.de)
- * on 02.05.2019.
- */
+
 object LocationRequests {
 
 	fun precise(updateRateMillis: Long): LocationRequest {
