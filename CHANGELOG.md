@@ -3,6 +3,9 @@
 All notable changes to this project will be documented in this file.
 
 ## Unreleased
+## v0.3.0 - 2020-03-06
+### Added
+* Helper to calculate average angle, useful to obtain more smooth values
 ### Fixed
 * Fixed lastKnownBearing was never set
 
