@@ -30,10 +30,10 @@ this.subscriptions.add(locationService.getLocationUpdates()
         // handle error
     }))
 
-this.subscriptions.add(bearingService.getBearingUpdates()
+this.subscriptions.add(bearingService.getBearingUpdatesFromRotation()
     .observeOn(AndroidSchedulers.mainThread())
     .subscribe({ bearing ->
-        myBearingConsumer.onBearingChanged(bearing)
+        myBearingConsumer.onBearingChanged(bearing.azimuth)
     }, { error ->
         // handle error
     }))

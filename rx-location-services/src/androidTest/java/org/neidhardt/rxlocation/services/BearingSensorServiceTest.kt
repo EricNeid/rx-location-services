@@ -22,9 +22,18 @@ class BearingSensorServiceTest {
 	}
 
 	@Test
-	fun getBearingUpdates() {
+	fun getBearingUpdatesFromMagneticAndAccelerometer() {
 		// action
-		val result = this.unit.getBearingUpdates().blockingFirst()
+		val result = this.unit.getBearingUpdatesFromMagneticAndAccelerometer().blockingFirst()
+		// verify
+		assertNotNull(result)
+		assertEquals(result, unit.lastKnownBearing)
+	}
+
+	@Test
+	fun getBearingUpdatesFromRotation() {
+		// action
+		val result = this.unit.getBearingUpdatesFromRotation().blockingFirst()
 		// verify
 		assertNotNull(result)
 		assertEquals(result, unit.lastKnownBearing)
