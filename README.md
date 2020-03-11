@@ -8,7 +8,7 @@ RX-location-services is a simple wrapper around some of Androids Location APIs. 
 ## Gradle
 
 ```gradle
-implementation 'org.neidhardt:rx-location-services:0.2.0'
+implementation 'org.neidhardt:rx-location-services:0.4.0'
 ```
 
 ## Usage

@@ -3,6 +3,14 @@
 All notable changes to this project will be documented in this file.
 
 ## Unreleased
+
+## v0.4.0 - 2020-03-11
+### Added
+* Bearing calculation using rotation sensor
+### Changed
+* Renamed getBearingUpdates -> getBearingUpdatesFromMagneticAndAccelerometer
+* Azimuth from bearing is wrapped in Bearing class, sensor accuracy is also provided  
+
 ## v0.3.0 - 2020-03-06
 ### Added
 * Helper to calculate average angle, useful to obtain more smooth values
