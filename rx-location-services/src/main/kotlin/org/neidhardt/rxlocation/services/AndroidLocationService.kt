@@ -12,6 +12,7 @@ import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import org.neidhardt.rxlocation.exceptions.MissingPermissionCoarseLocation
 import org.neidhardt.rxlocation.exceptions.MissingPermissionFineLocation
+import org.neidhardt.rxlocation.exceptions.ProviderDisabled
 
 /**
  * [AndroidLocationService] is a wrapper for stock android location manager to use rx.
@@ -46,20 +47,22 @@ class AndroidLocationService(private val context: Context) {
 
 			// callback for location updates
 			val locationUpdateCallback = object : LocationListener {
+
 				override fun onLocationChanged(location: Location?) {
-					TODO("Not yet implemented")
+					location?.let {
+						lastKnowLocation = it
+						emitter.onNext(it)
+					}
 				}
 
 				override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
-					TODO("Not yet implemented")
 				}
 
 				override fun onProviderEnabled(provider: String?) {
-					TODO("Not yet implemented")
 				}
 
 				override fun onProviderDisabled(provider: String?) {
-					TODO("Not yet implemented")
+					emitter.onError(ProviderDisabled("Provider ${provider ?: "null"} was disabled"))
 				}
 			}
 
@@ -73,7 +76,9 @@ class AndroidLocationService(private val context: Context) {
 				emitter.onError(getErrorForMissingPermission(context))
 			} else {
 				// request location updates
-				// TODO start location updates
+				locationManager.requestLocationUpdates(
+
+				)
 			}
 
 		}, BackpressureStrategy.LATEST)
