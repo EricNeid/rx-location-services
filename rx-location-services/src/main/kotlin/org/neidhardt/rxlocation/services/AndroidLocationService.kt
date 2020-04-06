@@ -42,13 +42,11 @@ class AndroidLocationService(private val context: Context) {
 	 */
 	@Suppress("unused")
 	@SuppressLint("MissingPermission")
-	fun getLocationUpdates(updateIntervalMs: Long, minDistance: Float): Flowable<Location> {
-
+	fun getLocationUpdates(updateIntervalMs: Long, minDistance: Float, provider: String): Flowable<Location> {
 		return Flowable.create({ emitter ->
 
 			// callback for location updates
 			val locationUpdateCallback = object : LocationListener {
-
 				override fun onLocationChanged(location: Location?) {
 					location?.let {
 						lastKnowLocation = it
@@ -77,13 +75,17 @@ class AndroidLocationService(private val context: Context) {
 				emitter.onError(getErrorForMissingPermission(context))
 			} else {
 				// request location updates
-				locationManager.requestLocationUpdates(
-						LocationManager.GPS_PROVIDER,
-						updateIntervalMs,
-						minDistance,
-						locationUpdateCallback,
-						null
-				)
+				try {
+					locationManager.requestLocationUpdates(
+							provider,
+							updateIntervalMs,
+							minDistance,
+							locationUpdateCallback,
+							null
+					)
+				} catch (e: Exception) {
+					emitter.onError(e)
+				}
 			}
 
 		}, BackpressureStrategy.LATEST)
