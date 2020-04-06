@@ -3,10 +3,11 @@ package org.neidhardt.rxlocation.services
 import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
-import android.content.pm.PackageManager
 import android.location.Location
-import android.support.v4.content.ContextCompat
-import com.google.android.gms.location.*
+import com.google.android.gms.location.LocationCallback
+import com.google.android.gms.location.LocationRequest
+import com.google.android.gms.location.LocationResult
+import com.google.android.gms.location.LocationServices
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Single
@@ -108,25 +109,3 @@ class GoogleLocationService(private val context: Context) {
 		}, BackpressureStrategy.LATEST)
 	}
 }
-
-private fun isRequiredPermissionGranted(context: Context): Boolean {
-	return context.hasPermissionFineLocation || context.hasPermissionCoarseLocation
-}
-
-private fun getErrorForMissingPermission(context: Context): Throwable {
-	return if (!context.hasPermissionFineLocation) {
-		MissingPermissionFineLocation("Fine location permission is missing, make sure to ask the user for it")
-	} else if (!context.hasPermissionCoarseLocation) {
-		MissingPermissionCoarseLocation("Coarse location permission is missing, make sure to ask the user for it")
-	} else {
-		Throwable("Required permission is missing")
-	}
-}
-
-private val Context.hasPermissionFineLocation: Boolean
-	get() = ContextCompat.checkSelfPermission(this,
-			Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
-
-private val Context.hasPermissionCoarseLocation: Boolean
-	get() = ContextCompat.checkSelfPermission(this,
-			Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED
