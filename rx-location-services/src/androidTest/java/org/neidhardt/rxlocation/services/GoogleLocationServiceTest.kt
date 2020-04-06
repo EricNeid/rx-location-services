@@ -11,6 +11,7 @@ import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
+import org.neidhardt.rxlocation.LocationRequests
 
 
 @LargeTest
@@ -29,28 +30,28 @@ class GoogleLocationServiceTest {
 
 	@Before
 	fun setUp() {
-		this.context = InstrumentationRegistry.getInstrumentation().context
-		this.unit = GoogleLocationService(context)
+		context = InstrumentationRegistry.getInstrumentation().context
+		unit = GoogleLocationService(context)
 	}
 
 	@Test
 	fun precondition_googlePlayServices() {
 		// action
 		val googleApiAvailability = GoogleApiAvailability.getInstance()
-		val resultCode = googleApiAvailability.isGooglePlayServicesAvailable(this.context)
+		val resultCode = googleApiAvailability.isGooglePlayServicesAvailable(context)
 		// verify
 		assertEquals(ConnectionResult.SUCCESS, resultCode)
 	}
 
 	@Test
-	fun getLastKnowLocationFromDevice() {
+	fun getLocationUpdates() {
 		// action
-		val result = this.unit.getLastKnowLocationFromDevice().blockingGet()
+		val result = unit.getLocationUpdates(LocationRequests.balanced(1000)).blockingFirst()
 		// verify
 		assertNotNull(result)
 		assertNotNull(result.latitude)
 		assertNotNull(result.longitude)
-		assertEquals(result, this.unit.lastKnowLocation)
+		assertEquals(result, unit.lastKnowLocation)
 	}
 
 }

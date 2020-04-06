@@ -11,6 +11,7 @@ import com.google.android.gms.location.LocationServices
 import io.reactivex.BackpressureStrategy
 import io.reactivex.Flowable
 import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
 import org.neidhardt.rxlocation.exceptions.MissingPermissionCoarseLocation
 import org.neidhardt.rxlocation.exceptions.MissingPermissionFineLocation
 
