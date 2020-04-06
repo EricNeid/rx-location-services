@@ -17,7 +17,7 @@ import org.neidhardt.rxlocation.exceptions.ProviderDisabled
 /**
  * [AndroidLocationService] is a wrapper for stock android location manager to use rx.
  *
- * @property context android context required for FusedLocationProviderClient, should be Application context.
+ * @property context android context, should be Application context.
  * @constructor creates a new instance that does nothing on start
  */
 class AndroidLocationService(private val context: Context) {
@@ -36,12 +36,13 @@ class AndroidLocationService(private val context: Context) {
 	 * It does check if booth permission [Manifest.permission.ACCESS_FINE_LOCATION] and [Manifest.permission.ACCESS_COARSE_LOCATION]
 	 * are granted. If permission is missing, it emits error of either [MissingPermissionFineLocation] or [MissingPermissionCoarseLocation].
 	 *
-	 * @param locationRequest to set update interval, precision, power usage, etc.
+	 * @param updateIntervalMs minimum time interval between location updates, in milliseconds
+	 * @param minDistance minimum distance between location updates, in meters
 	 * @return location updates
 	 */
 	@Suppress("unused")
 	@SuppressLint("MissingPermission")
-	fun getLocationUpdates(): Flowable<Location> {
+	fun getLocationUpdates(updateIntervalMs: Long, minDistance: Float): Flowable<Location> {
 
 		return Flowable.create({ emitter ->
 
@@ -77,7 +78,11 @@ class AndroidLocationService(private val context: Context) {
 			} else {
 				// request location updates
 				locationManager.requestLocationUpdates(
-
+						LocationManager.GPS_PROVIDER,
+						updateIntervalMs,
+						minDistance,
+						locationUpdateCallback,
+						null
 				)
 			}
 
