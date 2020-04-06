@@ -1,21 +1,19 @@
 package org.neidhardt.rxlocation.services
 
 import android.content.Context
+import android.location.LocationManager
 import androidx.test.filters.LargeTest
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.rule.GrantPermissionRule
-import com.google.android.gms.common.ConnectionResult
-import com.google.android.gms.common.GoogleApiAvailability
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.neidhardt.rxlocation.LocationRequests
 
 
 @LargeTest
-class GoogleLocationServiceTest {
+class AndroidLocationServiceTest {
 
 	@Rule
 	@JvmField
@@ -26,27 +24,22 @@ class GoogleLocationServiceTest {
 	)
 
 	private lateinit var context: Context
-	private lateinit var unit: GoogleLocationService
+	private lateinit var unit: AndroidLocationService
 
 	@Before
 	fun setUp() {
-		context = InstrumentationRegistry.getInstrumentation().context
-		unit = GoogleLocationService(context)
-	}
-
-	@Test
-	fun precondition_googlePlayServices() {
-		// action
-		val googleApiAvailability = GoogleApiAvailability.getInstance()
-		val resultCode = googleApiAvailability.isGooglePlayServicesAvailable(context)
-		// verify
-		assertEquals(ConnectionResult.SUCCESS, resultCode)
+		this.context = InstrumentationRegistry.getInstrumentation().context
+		this.unit = AndroidLocationService(context)
 	}
 
 	@Test
 	fun getLocationUpdates() {
 		// action
-		val result = unit.getLocationUpdates(LocationRequests.balanced(1000)).blockingFirst()
+		val result = unit.getLocationUpdates(
+				1000,
+				1f,
+				LocationManager.GPS_PROVIDER
+		).blockingFirst()
 		// verify
 		assertNotNull(result)
 		assertNotNull(result.latitude)
