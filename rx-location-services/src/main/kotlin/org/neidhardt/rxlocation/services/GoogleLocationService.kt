@@ -16,7 +16,7 @@ import org.neidhardt.rxlocation.exceptions.MissingPermissionFineLocation
 /**
  * [GoogleLocationService] is a wrapper for FusedLocationProviderClient to use rx.
  *
- * @param context android context required for FusedLocationProviderClient, should be Application context.
+ * @property context android context required for FusedLocationProviderClient, should be Application context.
  * @constructor creates a new instance that does nothing on start
  */
 class GoogleLocationService(private val context: Context) {
@@ -94,7 +94,7 @@ class GoogleLocationService(private val context: Context) {
 
 			// stop client, if observer unsubscribe
 			emitter.setCancellable {
-				this.client.removeLocationUpdates(locationUpdateCallback)
+				client.removeLocationUpdates(locationUpdateCallback)
 			}
 
 			// star receiving updates
@@ -102,7 +102,7 @@ class GoogleLocationService(private val context: Context) {
 				emitter.onError(getErrorForMissingPermission(context))
 			} else {
 				// request location updates
-				this.client.requestLocationUpdates(locationRequest, locationUpdateCallback, null)
+				client.requestLocationUpdates(locationRequest, locationUpdateCallback, null)
 			}
 
 		}, BackpressureStrategy.LATEST)
