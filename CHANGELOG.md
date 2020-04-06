@@ -6,6 +6,8 @@ All notable changes to this project will be documented in this file.
 
 ### Added
 * AndroidLocationService to get location updates via stock LocationManager
+### Fixed
+* lastKnownBearing not updated when using rotation sensor
 
 ## v0.4.0 - 2020-03-11
 ### Added

@@ -108,6 +108,7 @@ class BearingSensorService(context: Context) {
 					SensorManager.getOrientation(adjustedRotationMatrix, orientation)
 					val azimuth = (Math.toDegrees(orientation[0].toDouble()).toFloat() + 360f) % 360f
 
+					lastKnownBearing = azimuth
 					emitter.onNext(Bearing(azimuth, sensorAccuracy))
 				}
 			}
