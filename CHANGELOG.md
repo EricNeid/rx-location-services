@@ -4,6 +4,9 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+### Added
+* AndroidLocationService to get location updates via stock LocationManager
+
 ## v0.4.0 - 2020-03-11
 ### Added
 * Bearing calculation using rotation sensor

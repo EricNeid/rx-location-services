@@ -3,6 +3,7 @@
 RX-location-services is a simple wrapper around some of Androids Location APIs. Currently supported:
 
 * GoogleLocationService - using GoogleFusedLocationProvider for Location updates
+* AndroidLocationService - using LocationManager for Location updates
 * BearingSensorService - using accelerometer and magnetic sensor for bearing updates
 
 ## Gradle
