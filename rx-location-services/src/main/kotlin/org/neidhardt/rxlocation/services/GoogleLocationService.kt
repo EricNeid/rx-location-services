@@ -44,6 +44,7 @@ class GoogleLocationService(private val context: Context) {
 	 *
 	 * @return single location update
 	 */
+	@Suppress("unused")
 	@SuppressLint("MissingPermission")
 	fun getLastKnowLocationFromDevice(): Single<Location> {
 
