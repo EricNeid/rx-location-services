@@ -16,14 +16,16 @@ implementation 'org.neidhardt:rx-location-services:0.4.0'
 
 ```kotlin
 // create service instances in application
-val locationService: GoogleLocationService by lazy { GoogleLocationService(this.applicationContext) }
+val locationServiceGoogle: GoogleLocationService by lazy { GoogleLocationService(this.applicationContext) }
+
+val locationServiceAndroid: AndroidLocationService by lazy { AndroidLocationService(this.applicationContext) }
 
 val bearingService: BearingSensorService by lazy { BearingSensorService(this.applicationContext) }
 ```
 
 ```kotlin
 // do not forget to dispose subscription
-this.subscriptions.add(locationService.getLocationUpdates()
+this.subscriptions.add(locationServiceGoogle.getLocationUpdates()
     .observeOn(AndroidSchedulers.mainThread())
     .subscribe({ location ->
         myLocationConsumer.onLocationChanged(location)
