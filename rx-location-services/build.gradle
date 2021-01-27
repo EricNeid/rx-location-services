@@ -1,4 +1,4 @@
-def appVersionName = '0.5.0'
+def appVersionName = '0.5.1'
 def appVersionCode = 5
 def publishedGroupId = 'org.neidhardt'
 def appPackageName = 'rx-location-services'
@@ -79,7 +79,7 @@ dependencies {
 	implementation 'com.google.android.gms:play-services-location:17.0.0'
 
 	// rx
-	implementation 'io.reactivex.rxjava2:rxjava:2.2.17'
+	api 'io.reactivex.rxjava2:rxjava:2.2.17'
 	implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
 	implementation 'io.reactivex.rxjava2:rxkotlin:2.4.0'
 

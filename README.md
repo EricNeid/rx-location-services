@@ -6,26 +6,29 @@ RX-location-services is a simple wrapper around some of Androids Location APIs. 
 * AndroidLocationService - using LocationManager for Location updates
 * BearingSensorService - using accelerometer and magnetic sensor for bearing updates
 
+It uses rxJava2 in it's responses.
+
 ## Gradle
 
 ```gradle
-implementation 'org.neidhardt:rx-location-services:0.4.0'
+implementation 'org.neidhardt:rx-location-services:0.5.1'
 ```
 
 ## Usage
 
 ```kotlin
 // create service instances in application
-val locationServiceGoogle: GoogleLocationService by lazy { GoogleLocationService(this.applicationContext) }
+// you can use lazy loading, because applicationContext is only available after onCreate
+val locationServiceGoogle: GoogleLocationService by lazy { GoogleLocationService(applicationContext) }
 
-val locationServiceAndroid: AndroidLocationService by lazy { AndroidLocationService(this.applicationContext) }
+val locationServiceAndroid: AndroidLocationService by lazy { AndroidLocationService(applicationContext) }
 
-val bearingService: BearingSensorService by lazy { BearingSensorService(this.applicationContext) }
+val bearingService: BearingSensorService by lazy { BearingSensorService(applicationContext) }
 ```
 
 ```kotlin
 // do not forget to dispose subscription
-this.subscriptions.add(locationServiceGoogle.getLocationUpdates()
+subscriptions.add(locationServiceGoogle.getLocationUpdates()
     .observeOn(AndroidSchedulers.mainThread())
     .subscribe({ location ->
         myLocationConsumer.onLocationChanged(location)
@@ -33,7 +36,7 @@ this.subscriptions.add(locationServiceGoogle.getLocationUpdates()
         // handle error
     }))
 
-this.subscriptions.add(bearingService.getBearingUpdatesFromRotation()
+subscriptions.add(bearingService.getBearingUpdatesFromRotation()
     .observeOn(AndroidSchedulers.mainThread())
     .subscribe({ bearing ->
         myBearingConsumer.onBearingChanged(bearing.azimuth)
