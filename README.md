@@ -9,7 +9,13 @@ RX-location-services is a simple rxJava2 wrapper around some of then Androids Lo
 ## Gradle
 
 ```gradle
-implementation 'com.github.ericneid:rx-location-services:0.6.0'
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.github.ericneid:rx-location-services:0.6.'
+}
 ```
 
 ## Usage
