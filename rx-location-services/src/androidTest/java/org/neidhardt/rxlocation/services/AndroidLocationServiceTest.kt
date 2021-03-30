@@ -3,7 +3,7 @@ package org.neidhardt.rxlocation.services
 import android.content.Context
 import android.location.LocationManager
 import androidx.test.filters.LargeTest
-import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import androidx.test.rule.GrantPermissionRule
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
@@ -28,8 +28,8 @@ class AndroidLocationServiceTest {
 
 	@Before
 	fun setUp() {
-		this.context = InstrumentationRegistry.getInstrumentation().context
-		this.unit = AndroidLocationService(context)
+		context = getInstrumentation().targetContext
+		unit = AndroidLocationService(context)
 	}
 
 	@Test

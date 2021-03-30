@@ -3,6 +3,7 @@ package org.neidhardt.rxlocation.services
 import android.content.Context
 import androidx.test.filters.LargeTest
 import androidx.test.platform.app.InstrumentationRegistry
+import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import org.junit.Before
 import org.junit.Test
 
@@ -17,7 +18,7 @@ class BearingSensorServiceTest {
 
 	@Before
 	fun setUp() {
-		context = InstrumentationRegistry.getInstrumentation().context
+		context = getInstrumentation().targetContext
 		unit = BearingSensorService(context)
 	}
 

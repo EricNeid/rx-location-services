@@ -4,6 +4,11 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## v0.6.1 - 2021-03-30
+### Changed (Breaking)
+* First release to maven central
+* groupId has changed from org.neidhardt to com.github.ericneid
+
 ## v0.5.0 - 2020-04-06
 ### Added
 * AndroidLocationService to get location updates via stock LocationManager
