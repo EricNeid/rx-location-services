@@ -20,7 +20,7 @@ repositories {
 }
 
 dependencies {
-    implementation 'com.github.ericneid:rx-location-services:0.6.'
+    implementation 'com.github.ericneid:rx-location-services:0.7.0'
 }
 ```
 
