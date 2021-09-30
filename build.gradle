@@ -1,17 +1,15 @@
+/*
+ * SPDX-FileCopyrightText: 2021 Eric Neidhardt
+ * SPDX-License-Identifier: MIT
+ */
 apply plugin: 'io.codearte.nexus-staging'
 
 buildscript {
 	ext.kotlin_version = '1.4.30'
+	ext.dokka_version = '1.5.30'
 	repositories {
 		google()
-		jcenter()
 		mavenCentral()
-		maven {
-			url 'https://dl.bintray.com/kotlin/kotlin-dev'
-			content {
-				includeGroup('org.jetbrains.dokka')
-			}
-		}
 	}
 	dependencies {
 		classpath 'com.android.tools.build:gradle:4.1.2'
@@ -19,7 +17,7 @@ buildscript {
 		classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
 		classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"
 
-		classpath "org.jetbrains.dokka:dokka-gradle-plugin:1.4.20.2-dev-64"
+		classpath "org.jetbrains.dokka:dokka-gradle-plugin:${dokka_version}"
 
 		classpath 'io.codearte.gradle.nexus:gradle-nexus-staging-plugin:0.22.0'
 	}

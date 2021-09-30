@@ -1,10 +1,14 @@
+# SPDX-FileCopyrightText: 2021 Eric Neidhardt
+# SPDX-License-Identifier: CC0-1.0
 .gradle/
 .idea/
-build/
-local.properties
-gradle.properties
 *.iml
 *.project
 *.prefs
 .classpath
+.settings
 simple-storage/.classpath
+
+build/
+local.properties
+gradle.properties

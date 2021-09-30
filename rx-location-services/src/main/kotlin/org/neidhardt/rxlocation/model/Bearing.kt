@@ -1,3 +1,7 @@
+/**
+ * SPDX-FileCopyrightText: 2021 Eric Neidhardt
+ * SPDX-License-Identifier: MIT
+ */
 package org.neidhardt.rxlocation.model
 
 /**

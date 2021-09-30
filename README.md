@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2021 Eric Neidhardt
+SPDX-License-Identifier: CC-BY-4.0
+-->
+<!-- markdownlint-disable MD022 MD032 MD024-->
+<!-- markdownlint-disable MD041-->
 # About
 
 RX-location-services is a simple rxJava2 wrapper around some of then Androids Location APIs. Currently supported:

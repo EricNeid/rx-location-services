@@ -1,3 +1,7 @@
+/*
+ * SPDX-FileCopyrightText: 2021 Eric Neidhardt
+ * SPDX-License-Identifier: MIT
+ */
 def groupId = 'com.github.ericneid'
 def libraryName = 'rx-location-services'
 def libraryVersion = '0.6.1'
@@ -51,7 +55,6 @@ archivesBaseName = libraryName
 
 repositories {
 	google()
-	jcenter()
 	mavenCentral()
 }
 

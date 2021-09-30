@@ -1,3 +1,7 @@
+<!--
+SPDX-FileCopyrightText: 2021 Eric Neidhardt
+SPDX-License-Identifier: MIT
+-->
 <manifest
 	xmlns:android="http://schemas.android.com/apk/res/android"
 	package="org.neidhardt.rxlocationservices">
