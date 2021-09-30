@@ -7,6 +7,9 @@ SPDX-License-Identifier: CC-BY-4.0
 All notable changes to this project will be documented in this file.
 
 ## Unreleased
+## v0.7.0 - 2021-09-30
+### Changed
+* Dokka for javadoc generation increased to version 1.5.30
 
 ## v0.6.1 - 2021-03-30
 ### Changed (Breaking)
