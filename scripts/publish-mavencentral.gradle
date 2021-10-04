@@ -83,8 +83,8 @@ publishing {
             // Mostly self-explanatory metadata
             pom {
                 name = PUBLISH_ARTIFACT_ID
-                description = 'Helper to construct a standard Android dialog, containing a viewager to display a list of messages.'
-                url = 'https://github.com/EricNeid/viewpager-dialog'
+                description = 'RX-location-services is a simple rxJava2 wrapper around some of then Androids Location APIs.'
+                url = 'https://github.com/EricNeid/rx-location-services'
                 licenses {
                     license {
                         name = 'MIT License'
@@ -101,9 +101,9 @@ publishing {
                 }
                 // Version control info - if you're using GitHub, follow the format as seen here
                 scm {
-                    connection = 'scm:git:github.com/ericneid/viewpager-dialog.git'
-                    developerConnection = 'scm:git:ssh://github.com/ricneid/viewpager-dialog.git'
-                    url = 'https://github.com/ericneid/viewpager-dialog/tree/master'
+                    connection = 'scm:git:http://github.com/EricNeid/rx-location-services.git'
+                    developerConnection = 'scm:git:http://github.com/EricNeid/rx-location-services.git'
+                    url = 'https://github.com/EricNeid/rx-location-services'
                 }
                 // A slightly hacky fix so that your POM will include any transitive dependencies
                 // that your library builds upon
