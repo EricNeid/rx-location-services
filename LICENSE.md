@@ -10,4 +10,6 @@ This work is licensed under multiple licenses:
 
 Please see the individual files for more accurate information.
 
+Please see [third-party](LICENSES/third-party) for license information from third-party dependencies.
+
 > **Hint:** Copyright and license information are provided in accordance to the [REUSE Specification 3.0](https://reuse.software/spec/).
