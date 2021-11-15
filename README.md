@@ -6,7 +6,7 @@ SPDX-License-Identifier: CC-BY-4.0
 <!-- markdownlint-disable MD041-->
 # About
 
-RX-location-services is a simple rxJava2 wrapper around some of Androids Location APIs. Currently supported:
+RX-location-services is a simple rxJava3 wrapper around some of Androids Location APIs. Currently supported:
 
 * GoogleLocationService - using GoogleFusedLocationProvider for Location updates
 * AndroidLocationService - using LocationManager for Location updates
