@@ -50,15 +50,15 @@ class GoogleLocationServiceTest {
 
 	@Test
 	fun getLocationUpdates() {
-			// action
-			val result = unit.getLocationUpdates(LocationRequests.balanced(1000))
-					.observeOn(AndroidSchedulers.mainThread())
-					.blockingFirst()
-			// verify
-			assertNotNull(result)
-			assertNotNull(result.latitude)
-			assertNotNull(result.longitude)
-			assertEquals(result, unit.lastKnowLocation)
+		// action
+		val result = unit.getLocationUpdates(LocationRequests.balanced(1000))
+			.observeOn(AndroidSchedulers.mainThread())
+			.blockingFirst()
+		// verify
+		assertNotNull(result)
+		assertNotNull(result.latitude)
+		assertNotNull(result.longitude)
+		assertEquals(result, unit.lastKnowLocation)
 	}
 
 }

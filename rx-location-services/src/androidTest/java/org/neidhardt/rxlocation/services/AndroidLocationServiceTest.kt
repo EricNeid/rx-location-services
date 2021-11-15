@@ -14,11 +14,10 @@ import org.junit.Assert.assertNotNull
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-
+import java.lang.Runnable as Runnable1
 
 @LargeTest
 class AndroidLocationServiceTest {
-
 	@Rule
 	@JvmField
 	val grantPermissionRule: GrantPermissionRule = GrantPermissionRule.grant(
@@ -40,9 +39,9 @@ class AndroidLocationServiceTest {
 	fun getLocationUpdates() {
 		// action
 		val result = unit.getLocationUpdates(
-				1000,
-				1f,
-				LocationManager.GPS_PROVIDER
+			1000,
+			1f,
+			LocationManager.GPS_PROVIDER
 		).blockingFirst()
 		// verify
 		assertNotNull(result)
