@@ -6,12 +6,11 @@ package org.neidhardt.rxlocation.services
 
 import android.content.Context
 import androidx.test.filters.LargeTest
-import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import androidx.test.rule.GrantPermissionRule
 import com.google.android.gms.common.ConnectionResult
 import com.google.android.gms.common.GoogleApiAvailability
-import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
 import org.junit.Before
@@ -51,15 +50,15 @@ class GoogleLocationServiceTest {
 
 	@Test
 	fun getLocationUpdates() {
-			// action
-			val result = unit.getLocationUpdates(LocationRequests.balanced(1000))
-					.observeOn(AndroidSchedulers.mainThread())
-					.blockingFirst()
-			// verify
-			assertNotNull(result)
-			assertNotNull(result.latitude)
-			assertNotNull(result.longitude)
-			assertEquals(result, unit.lastKnowLocation)
+		// action
+		val result = unit.getLocationUpdates(LocationRequests.balanced(1000))
+			.observeOn(AndroidSchedulers.mainThread())
+			.blockingFirst()
+		// verify
+		assertNotNull(result)
+		assertNotNull(result.latitude)
+		assertNotNull(result.longitude)
+		assertEquals(result, unit.lastKnowLocation)
 	}
 
 }

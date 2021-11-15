@@ -7,6 +7,10 @@ SPDX-License-Identifier: CC-BY-4.0
 All notable changes to this project will be documented in this file.
 
 ## Unreleased
+
+### Changed (Breaking)
+* Update to rxjava3 and rxkotlin3
+
 ## v0.7.0 - 2021-09-30
 ### Changed
 * Dokka for javadoc generation increased to version 1.5.30
