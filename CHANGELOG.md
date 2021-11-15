@@ -8,6 +8,7 @@ All notable changes to this project will be documented in this file.
 
 ## Unreleased
 
+## v0.8.0 - 2021-11-15
 ### Changed (Breaking)
 * Update to rxjava3 and rxkotlin3
 

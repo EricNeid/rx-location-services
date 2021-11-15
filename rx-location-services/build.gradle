@@ -4,7 +4,7 @@
  */
 def groupId = 'com.github.ericneid'
 def libraryName = 'rx-location-services'
-def libraryVersion = '0.7.0'
+def libraryVersion = '0.8.0'
 
 ext {
 	PUBLISH_GROUP_ID = groupId
