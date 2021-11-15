@@ -11,8 +11,8 @@ import android.hardware.SensorEventListener
 import android.hardware.SensorManager
 import android.view.Surface
 import android.view.WindowManager
-import io.reactivex.BackpressureStrategy
-import io.reactivex.Flowable
+import io.reactivex.rxjava3.core.BackpressureStrategy
+import io.reactivex.rxjava3.core.Flowable
 import org.neidhardt.rxlocation.exceptions.MissingSensor
 import org.neidhardt.rxlocation.model.Bearing
 
