@@ -67,7 +67,7 @@ dependencies {
 	implementation "com.android.support:support-annotations:$androidSupportLibVersion"
 
 	// google play services
-	implementation 'com.google.android.gms:play-services-location:18.0.0'
+	implementation 'com.google.android.gms:play-services-location:20.0.0'
 
 	// rx
 	api 'io.reactivex.rxjava3:rxjava:3.1.4'
