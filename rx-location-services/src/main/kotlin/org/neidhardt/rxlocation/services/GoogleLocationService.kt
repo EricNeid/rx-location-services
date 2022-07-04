@@ -90,10 +90,10 @@ class GoogleLocationService(private val context: Context) {
 
 			// callback for location updates
 			val locationUpdateCallback = object : LocationCallback() {
-				override fun onLocationResult(locationResult: LocationResult?) {
-					locationResult?.lastLocation?.let { location ->
-						lastKnowLocation = location
-						emitter.onNext(location)
+				override fun onLocationResult(locationResult: LocationResult) {
+					locationResult.lastLocation.let {
+						lastKnowLocation = it
+						emitter.onNext(it)
 					}
 				}
 			}

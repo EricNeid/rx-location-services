@@ -58,6 +58,7 @@ class AndroidLocationService(private val context: Context) {
 					}
 				}
 
+				@Deprecated("Deprecated in Java")
 				override fun onStatusChanged(provider: String?, status: Int, extras: Bundle?) {
 				}
 
