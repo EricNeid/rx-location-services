@@ -7,7 +7,7 @@ import junit.framework.TestCase.assertNotNull
 import org.junit.Test
 import java.util.concurrent.TimeUnit
 
-class CalculateSpeedTest {
+class MapToSpeedTest {
 
 	@Test
 	fun calculateSpeed() {
@@ -26,7 +26,7 @@ class CalculateSpeedTest {
 		).delay(1, TimeUnit.SECONDS)
 		// action
 		val result = locations
-			.calculateSpeed(3)
+			.mapToSpeed(3)
 			.blockingFirst()
 		// verify
 		assertNotNull(result)

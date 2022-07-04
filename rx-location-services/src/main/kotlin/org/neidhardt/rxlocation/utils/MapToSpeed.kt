@@ -6,7 +6,14 @@ import org.neidhardt.rxlocation.model.Speed
 import java.util.concurrent.TimeUnit
 
 
-fun Flowable<Location>.calculateSpeed(sampleTimeSec: Long): Flowable<Speed> {
+/**
+ * calculateSpeed map input stream of locations to stream of speed.
+ * Locations are collected for a given duration and the speed is
+ * calculated from these locations and the elapsed time.
+ *
+ * @param sampleTimeSec buffer locations for this time frame
+ */
+fun Flowable<Location>.mapToSpeed(sampleTimeSec: Long): Flowable<Speed> {
 	return this.buffer(sampleTimeSec, TimeUnit.SECONDS)
 		.map { locations ->
 			if (locations.size < 2) {
