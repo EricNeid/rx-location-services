@@ -88,7 +88,7 @@ class AndroidLocationService(private val context: Context) {
 							updateIntervalMs,
 							minDistance,
 							locationUpdateCallback,
-						handlerThread.looper
+							handlerThread.looper
 					)
 				} catch (e: Exception) {
 					emitter.onError(e)

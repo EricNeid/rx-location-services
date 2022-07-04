@@ -17,6 +17,7 @@ import org.junit.Test
 
 @LargeTest
 class AndroidLocationServiceTest {
+
 	@Rule
 	@JvmField
 	val grantPermissionRule: GrantPermissionRule = GrantPermissionRule.grant(
