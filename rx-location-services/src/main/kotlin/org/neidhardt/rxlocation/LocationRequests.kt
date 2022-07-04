@@ -12,22 +12,22 @@ object LocationRequests {
 
 	fun precise(updateRateMillis: Long): LocationRequest {
 		return LocationRequest.create().apply {
-			this.interval = updateRateMillis
-			this.priority = Priority.PRIORITY_HIGH_ACCURACY
+			interval = updateRateMillis
+			priority = Priority.PRIORITY_HIGH_ACCURACY
 		}
 	}
 
 	fun balanced(updateRateMillis: Long): LocationRequest {
 		return LocationRequest.create().apply {
-			this.interval = updateRateMillis
-			this.priority = Priority.PRIORITY_BALANCED_POWER_ACCURACY
+			interval = updateRateMillis
+			priority = Priority.PRIORITY_BALANCED_POWER_ACCURACY
 		}
 	}
 
 	fun cheap(updateRateMillis: Long): LocationRequest {
 		return LocationRequest.create().apply {
-			this.interval = updateRateMillis
-			this.priority = Priority.PRIORITY_LOW_POWER
+			interval = updateRateMillis
+			priority = Priority.PRIORITY_LOW_POWER
 		}
 	}
 }

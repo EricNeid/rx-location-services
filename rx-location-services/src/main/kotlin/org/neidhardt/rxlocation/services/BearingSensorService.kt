@@ -119,11 +119,11 @@ class BearingSensorService(context: Context) {
 
 			// unregister from sensors after unsubscribe
 			emitter.setCancellable {
-				this.sensorManager.unregisterListener(rotationSensorCallback)
+				sensorManager.unregisterListener(rotationSensorCallback)
 			}
 
 			// start receiving updates
-			this.sensorManager.registerListener(
+			sensorManager.registerListener(
 					rotationSensorCallback,
 					rotationSensor,
 					SensorManager.SENSOR_DELAY_NORMAL
@@ -212,19 +212,19 @@ class BearingSensorService(context: Context) {
 
 			// unregister from sensors after unsubscribe
 			emitter.setCancellable {
-				this.sensorManager.unregisterListener(accelerationSensorsCallback)
-				this.sensorManager.unregisterListener(rotationSensorUpdateCallback)
+				sensorManager.unregisterListener(accelerationSensorsCallback)
+				sensorManager.unregisterListener(rotationSensorUpdateCallback)
 			}
 
 			// start receiving updates
-			this.sensorManager.registerListener(
+			sensorManager.registerListener(
 					accelerationSensorsCallback,
 					accelerationSensor,
 					SensorManager.SENSOR_DELAY_GAME
 			)
 
 			// start receiving updates
-			this.sensorManager.registerListener(
+			sensorManager.registerListener(
 					rotationSensorUpdateCallback,
 					magneticSensor,
 					SensorManager.SENSOR_DELAY_GAME

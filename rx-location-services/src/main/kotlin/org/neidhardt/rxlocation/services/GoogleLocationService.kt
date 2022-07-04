@@ -59,7 +59,7 @@ class GoogleLocationService(private val context: Context) {
 				emitter.onError(getErrorForMissingPermission(context))
 			} else {
 				// request last know location from client with async task
-				val asyncLocationTask = this.client.lastLocation
+				val asyncLocationTask = client.lastLocation
 				asyncLocationTask.addOnSuccessListener { location ->
 					if (location != null) {
 						lastKnowLocation = location
