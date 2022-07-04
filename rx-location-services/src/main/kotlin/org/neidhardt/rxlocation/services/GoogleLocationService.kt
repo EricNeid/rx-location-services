@@ -8,6 +8,7 @@ import android.Manifest
 import android.annotation.SuppressLint
 import android.content.Context
 import android.location.Location
+import android.os.HandlerThread
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
@@ -17,6 +18,7 @@ import io.reactivex.rxjava3.core.Flowable
 import io.reactivex.rxjava3.core.Single
 import org.neidhardt.rxlocation.exceptions.MissingPermissionCoarseLocation
 import org.neidhardt.rxlocation.exceptions.MissingPermissionFineLocation
+
 
 /**
  * [GoogleLocationService] is a wrapper for FusedLocationProviderClient to use rx.
@@ -107,8 +109,9 @@ class GoogleLocationService(private val context: Context) {
 			if (!isRequiredPermissionGranted(context)) {
 				emitter.onError(getErrorForMissingPermission(context))
 			} else {
-				// request location updates
-				client.requestLocationUpdates(locationRequest, locationUpdateCallback, null)
+				// create looper and request location updates
+				val handlerThread = HandlerThread("GoogleLocationService.getLocationUpdates").apply { start() }
+				client.requestLocationUpdates(locationRequest, locationUpdateCallback, handlerThread.looper)
 			}
 
 		}, BackpressureStrategy.LATEST)

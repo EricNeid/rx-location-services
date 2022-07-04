@@ -12,6 +12,7 @@ import android.location.Location
 import android.location.LocationListener
 import android.location.LocationManager
 import android.os.Bundle
+import android.os.HandlerThread
 import io.reactivex.rxjava3.core.BackpressureStrategy
 import io.reactivex.rxjava3.core.Flowable
 import org.neidhardt.rxlocation.exceptions.MissingPermissionCoarseLocation
@@ -79,14 +80,15 @@ class AndroidLocationService(private val context: Context) {
 			if (!isRequiredPermissionGranted(context)) {
 				emitter.onError(getErrorForMissingPermission(context))
 			} else {
-				// request location updates
+				// create looper and request location updates
+				val handlerThread = HandlerThread("AndroidLocationService.getLocationUpdates").apply { start() }
 				try {
 					locationManager.requestLocationUpdates(
 							provider,
 							updateIntervalMs,
 							minDistance,
 							locationUpdateCallback,
-							null
+						handlerThread.looper
 					)
 				} catch (e: Exception) {
 					emitter.onError(e)
