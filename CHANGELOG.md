@@ -7,6 +7,11 @@ SPDX-License-Identifier: CC-BY-4.0
 All notable changes to this project will be documented in this file.
 
 ## Unreleased
+## v0.9.0 - 2022-07-04
+### Added
+* mapToSpeed to calculate speed from incoming locations
+### Changed
+* Update play-services-location to 20.0.0 (was 18.0.0)
 
 ## v0.8.0 - 2021-11-15
 ### Changed (Breaking)
